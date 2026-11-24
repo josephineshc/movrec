@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>영화 추천 연구</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><span class="brand">영화 추천 연구</span><span id="progress"></span></header>
+<main>
+
+<!-- 0. 동의 -->
+<section id="s-consent" class="step">
+  <h1>연구 참여 안내</h1>
+  <div class="card prose">
+    <p>이 연구는 영화 추천 시스템에 대한 사용자 경험을 알아보기 위한 연구입니다. 약 20분이 걸립니다.</p>
+    <p>좋아하는 영화 5편을 고르고, 보고 싶은 영화를 자유롭게 요청하면 <b>서로 다른 방식으로 만든 추천 목록 2개</b>를 차례로 보여드립니다. 각 목록마다 가장 보고 싶은 영화를 한 편 고르고, 영화별 질문과 짧은 설문에 답하게 됩니다.</p>
+    <p>응답은 연구 목적으로만 사용되며 개인을 식별할 수 있는 정보는 수집하지 않습니다. 언제든 참여를 중단할 수 있습니다.</p>
+    <p class="muted">[IRB 승인 동의서 내용으로 교체]</p>
+    <label class="check"><input type="checkbox" id="agree"> 위 내용을 읽었으며 연구 참여에 동의합니다.</label>
+  </div>
+  <div class="actions"><button id="btn-start" disabled>시작하기</button></div>
+</section>
+
+<!-- 1. 좋아하는 영화 5편 -->
+<section id="s-liked" class="step" hidden>
+  <h1>좋아하는 영화 5편을 골라 주세요</h1>
+  <p class="lead">제목(영어)으로 검색해서 고르면 됩니다. 2000–2020년 영화만 있어요.</p>
+  <p class="muted" id="data-status">영화 목록을 불러오는 중…</p>
+  <div class="picked" id="picked"></div>
+  <input type="search" id="search" placeholder="영화 제목 검색 (예: Inception)" autocomplete="off">
+  <ul class="results" id="results"></ul>
+  <div class="actions"><button id="btn-liked" disabled>다음 (0/5)</button></div>
+</section>
+
+<!-- 2. 질의 -->
+<section id="s-query" class="step" hidden>
+  <h1>어떤 영화를 보고 싶나요?</h1>
+  <p class="lead">추천 어시스턴트에게 말하듯 자유롭게 적어 주세요. 한국어나 영어 모두 괜찮아요.</p>
+  <textarea id="query" rows="4" placeholder="예: 비 오는 주말에 혼자 보기 좋은, 너무 무겁지 않은 영화 추천해줘"></textarea>
+  <div class="actions"><button id="btn-query" disabled>추천 받기</button></div>
+</section>
+
+<!-- 2-1. 로딩 -->
+<section id="s-loading" class="step center" hidden>
+  <div class="spinner"></div>
+  <p>추천 목록을 만들고 있어요. 30초 정도 걸릴 수 있어요.<br>창을 닫지 말아 주세요.</p>
+</section>
+
+<!-- 3. 추천 목록 + 선택 (목록 1, 2 공통) -->
+<section id="s-recs" class="step" hidden>
+  <div class="badge" id="list-badge"></div>
+  <h1>가장 보고 싶은 영화 한 편을 골라 주세요</h1>
+  <p class="lead">포스터 위에 마우스를 올리면 영화 정보가 보여요. 포스터를 클릭하면 선택됩니다.</p>
+  <div class="request">내 요청: <span class="echo-query"></span></div>
+  <div class="grid" id="grid"></div>
+  <div class="actions"><button id="btn-choice" disabled>이 영화로 선택</button></div>
+</section>
+
+<!-- 4. 영화별 평가 (목록 1, 2 공통) -->
+<section id="s-ratings" class="step" hidden>
+  <div class="badge" id="rate-badge"></div>
+  <h1>이 목록의 영화 10편에 대해 답해 주세요</h1>
+  <div class="request">내 요청: <span class="echo-query"></span></div>
+  <div id="rate-list"></div>
+  <div class="actions"><span class="warn" id="rate-warn"></span><button id="btn-ratings">다음</button></div>
+</section>
+
+<!-- 4-1. 목록별 설문 -->
+<section id="s-survey" class="step" hidden>
+  <div class="badge" id="survey-badge"></div>
+  <h1><span id="survey-title"></span>에 대해 답해 주세요</h1>
+  <p class="lead">방금 본 추천 목록을 떠올리며, 각 문장에 얼마나 동의하는지 골라 주세요.</p>
+  <div id="survey-list"></div>
+  <div id="comment-box" hidden>
+    <div class="item"><div class="text">더 하고 싶은 말이 있으면 자유롭게 적어 주세요. (선택)</div>
+      <textarea id="comment" rows="4" placeholder="두 추천 목록에 대한 생각, 불편했던 점 등"></textarea></div>
+  </div>
+  <div class="actions"><span class="warn" id="survey-warn"></span><button id="btn-survey">제출하기</button></div>
+</section>
+
+<!-- 4-2. 두 번째 목록 안내 -->
+<section id="s-next" class="step center" hidden>
+  <h1>이제 두 번째 추천 목록이에요</h1>
+  <p>같은 요청에 대해 <b>다른 방식으로 만든</b> 추천 목록이에요.<br>첫 번째 목록과 똑같이 영화를 고르고, 각 영화와 목록에 대해 답해 주세요.</p>
+  <div class="actions" style="justify-content:center"><button id="btn-next">두 번째 목록 보기</button></div>
+</section>
+
+<!-- 5. 완료 -->
+<section id="s-done" class="step center" hidden>
+  <h1>참여해 주셔서 감사합니다</h1>
+  <p>응답이 모두 저장됐어요. 이 창을 닫으셔도 됩니다.</p>
+</section>
+
+<div class="toast" id="toast" hidden></div>
+</main>
+<footer>영화 포스터·정보 출처: TMDB. This product uses the TMDB API but is not endorsed or certified by TMDB.</footer>
+<script src="config.js"></script>
+<script src="rec.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

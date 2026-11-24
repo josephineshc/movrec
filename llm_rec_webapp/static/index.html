@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>영화 추천 연구</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><span class="brand">영화 추천 연구</span><span id="progress"></span></header>
+<main>
+
+<!-- 0. 동의 -->
+<section id="s-consent" class="step">
+  <h1>연구 참여 안내</h1>
+  <div class="card prose">
+    <p>이 연구는 대화형 영화 추천 시스템에 대한 사용자 경험을 알아보기 위한 연구입니다. 약 15분이 걸립니다.</p>
+    <p>좋아하는 영화 5편을 고르고, 보고 싶은 영화를 자유롭게 요청하면 시스템이 영화 10편을 추천합니다. 추천된 영화 중 한 편을 고른 뒤, 각 영화와 시스템에 대한 질문에 답하게 됩니다.</p>
+    <p>응답은 연구 목적으로만 사용되며 개인을 식별할 수 있는 정보는 수집하지 않습니다. 언제든 참여를 중단할 수 있습니다.</p>
+    <p class="muted">[IRB 승인 동의서 내용으로 교체]</p>
+    <label class="check"><input type="checkbox" id="agree"> 위 내용을 읽었으며 연구 참여에 동의합니다.</label>
+  </div>
+  <div class="actions"><button id="btn-start" disabled>시작하기</button></div>
+</section>
+
+<!-- 1. 좋아하는 영화 5편 -->
+<section id="s-liked" class="step" hidden>
+  <h1>좋아하는 영화 5편을 골라 주세요</h1>
+  <p class="lead">제목(영어)으로 검색해서 고르면 됩니다. 2000–2020년 영화만 있어요.</p>
+  <div class="picked" id="picked"></div>
+  <input type="search" id="search" placeholder="영화 제목 검색 (예: Inception)" autocomplete="off">
+  <ul class="results" id="results"></ul>
+  <div class="actions"><button id="btn-liked" disabled>다음 (0/5)</button></div>
+</section>
+
+<!-- 2. 질의 -->
+<section id="s-query" class="step" hidden>
+  <h1>어떤 영화를 보고 싶나요?</h1>
+  <p class="lead">추천 어시스턴트에게 말하듯 자유롭게 적어 주세요. 한국어나 영어 모두 괜찮아요.</p>
+  <textarea id="query" rows="4" placeholder="예: 비 오는 주말에 혼자 보기 좋은, 너무 무겁지 않은 영화 추천해줘"></textarea>
+  <div class="actions"><button id="btn-query" disabled>추천 받기</button></div>
+</section>
+
+<!-- 2-1. 로딩 -->
+<section id="s-loading" class="step center" hidden>
+  <div class="spinner"></div>
+  <p>추천 목록을 만들고 있어요. 잠시만 기다려 주세요.</p>
+</section>
+
+<!-- 3. 추천 목록 + 선택 -->
+<section id="s-recs" class="step" hidden>
+  <h1>가장 보고 싶은 영화 한 편을 골라 주세요</h1>
+  <p class="lead">포스터 위에 마우스를 올리면 영화 정보가 보여요. 포스터를 클릭하면 선택됩니다.</p>
+  <div class="request">내 요청: <span id="echo-query"></span></div>
+  <div class="grid" id="grid"></div>
+  <div class="actions"><button id="btn-choice" disabled>이 영화로 선택</button></div>
+</section>
+
+<!-- 4. 영화별 평가 -->
+<section id="s-ratings" class="step" hidden>
+  <h1>추천된 영화 10편에 대해 답해 주세요</h1>
+  <div class="request">내 요청: <span id="echo-query2"></span></div>
+  <div id="rate-list"></div>
+  <div class="actions"><span class="warn" id="rate-warn"></span><button id="btn-ratings">다음</button></div>
+</section>
+
+<!-- 5. 설문 -->
+<section id="s-survey" class="step" hidden>
+  <h1>추천 시스템을 사용한 경험에 대해 답해 주세요</h1>
+  <p class="lead">각 문장에 얼마나 동의하는지 골라 주세요.</p>
+  <div id="survey-list"></div>
+  <div class="actions"><span class="warn" id="survey-warn"></span><button id="btn-survey">제출하기</button></div>
+</section>
+
+<!-- 5-1. 구글 설문으로 이동 -->
+<section id="s-gform" class="step center" hidden>
+  <h1>마지막 단계예요</h1>
+  <p>추천 시스템을 사용한 경험에 대한 설문에 답해 주세요.<br>참가자 번호는 설문에 자동으로 입력돼 있어요. 바꾸지 말아 주세요.</p>
+  <div class="actions" style="justify-content:center"><a class="btn" id="gform-link" href="#">설문으로 이동</a></div>
+</section>
+
+<!-- 6. 완료 -->
+<section id="s-done" class="step center" hidden>
+  <h1>참여해 주셔서 감사합니다</h1>
+  <p>완료 코드</p>
+  <div class="code" id="code"></div>
+</section>
+
+<div class="toast" id="toast" hidden></div>
+</main>
+<footer>영화 포스터·정보 출처: TMDB. This product uses the TMDB API but is not endorsed or certified by TMDB.</footer>
+<script src="app.js"></script>
+</body>
+</html>

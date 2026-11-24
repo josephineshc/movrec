@@ -1,0 +1,7 @@
+google-genai
+numpy
+pandas
+scipy
+httpx
+fastapi
+uvicorn

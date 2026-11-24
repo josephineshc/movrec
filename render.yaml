@@ -1,0 +1,21 @@
+# Render 블루프린트 (선택): Render 대시보드 → New → Blueprint 로 이 저장소를 고르면 자동 설정
+services:
+  - type: web
+    name: llm-rec-study
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: TMDB_API_KEY
+        sync: false
+      - key: SHEETS_URL
+        sync: false
+      - key: SHEETS_SECRET
+        sync: false
+      - key: ADMIN_TOKEN
+        sync: false

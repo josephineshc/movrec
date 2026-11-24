@@ -1,0 +1,185 @@
+{
+ "items": [
+  {
+   "code": "PD1",
+   "construct": "PD",
+   "reverse": true,
+   "text": "최종 추천 목록의 영화들은 모두 서로 비슷했다"
+  },
+  {
+   "code": "PD5",
+   "construct": "PD",
+   "reverse": false,
+   "text": "추천된 영화들은 여러 다양한 장르였다"
+  },
+  {
+   "code": "PD6",
+   "construct": "PD",
+   "reverse": false,
+   "text": "추천에는 다양한 영화가 많이 담겨 있었다"
+  },
+  {
+   "code": "PQ1",
+   "construct": "PQ",
+   "reverse": false,
+   "text": "추천 시스템이 추천한 영화들이 마음에 들었다"
+  },
+  {
+   "code": "PQ2",
+   "construct": "PQ",
+   "reverse": false,
+   "text": "추천된 영화들이 끌렸다"
+  },
+  {
+   "code": "PQ4",
+   "construct": "PQ",
+   "reverse": false,
+   "text": "추천된 영화들은 적절했다"
+  },
+  {
+   "code": "PQ5",
+   "construct": "PQ",
+   "reverse": true,
+   "text": "시스템이 별로인 영화를 너무 많이 추천했다"
+  },
+  {
+   "code": "PQ6",
+   "construct": "PQ",
+   "reverse": true,
+   "text": "추천된 영화 중 마음에 드는 것이 하나도 없었다"
+  },
+  {
+   "code": "CS1",
+   "construct": "CS",
+   "reverse": false,
+   "text": "최종 추천 목록에서 내가 고른 영화가 마음에 든다"
+  },
+  {
+   "code": "CS2",
+   "construct": "CS",
+   "reverse": false,
+   "text": "내가 고른 영화는 내 취향에 맞는다"
+  },
+  {
+   "code": "CS3",
+   "construct": "CS",
+   "reverse": false,
+   "text": "내가 고른 영화를 다른 사람이나 친구에게 추천하겠다"
+  },
+  {
+   "code": "CS4",
+   "construct": "CS",
+   "reverse": false,
+   "text": "내가 고른 영화가 기대된다"
+  },
+  {
+   "code": "CS7",
+   "construct": "CS",
+   "reverse": true,
+   "text": "내가 고른 영화보다 다른 영화를 보고 싶다"
+  },
+  {
+   "code": "TDO2",
+   "construct": "TDO",
+   "reverse": false,
+   "text": "추천된 영화들을 비교하는 것은 전혀 다른 것끼리 비교하는 느낌이었다"
+  },
+  {
+   "code": "TDO4",
+   "construct": "TDO",
+   "reverse": false,
+   "text": "추천된 영화들이 너무 달라서 비교하기 어려웠다"
+  },
+  {
+   "code": "CD3",
+   "construct": "CD",
+   "reverse": false,
+   "text": "결정하는 일이 버겁게 느껴졌다"
+  },
+  {
+   "code": "CD4",
+   "construct": "CD",
+   "reverse": true,
+   "text": "영화를 고르기 쉬웠다"
+  },
+  {
+   "code": "CD5",
+   "construct": "CD",
+   "reverse": false,
+   "text": "영화들을 비교하는 데 많은 노력이 들었다"
+  },
+  {
+   "code": "PTC3",
+   "construct": "PTC",
+   "reverse": true,
+   "text": "추천 시스템은 내 관심사 중 일부만 겨냥한 것 같았다"
+  },
+  {
+   "code": "PTC4",
+   "construct": "PTC",
+   "reverse": true,
+   "text": "추천 시스템은 나를 단면적인 사람으로 취급했다"
+  },
+  {
+   "code": "PTC5",
+   "construct": "PTC",
+   "reverse": false,
+   "text": "추천 목록은 나의 다양한 선호에 맞았다"
+  },
+  {
+   "code": "PTC6",
+   "construct": "PTC",
+   "reverse": false,
+   "text": "추천된 영화들은 여러 면에서 나에게 잘 맞았다"
+  },
+  {
+   "code": "SS1",
+   "construct": "SS",
+   "reverse": false,
+   "text": "이 추천 시스템을 사용하는 것은 즐거운 경험이다"
+  },
+  {
+   "code": "SS2",
+   "construct": "SS",
+   "reverse": false,
+   "text": "이 시스템을 다른 사람에게 추천하겠다"
+  },
+  {
+   "code": "SS3",
+   "construct": "SS",
+   "reverse": false,
+   "text": "이 추천 시스템을 쓰면 더 좋은 영화를 찾을 수 있다"
+  },
+  {
+   "code": "SS4",
+   "construct": "SS",
+   "reverse": true,
+   "text": "이 시스템은 쓸모없다"
+  },
+  {
+   "code": "SS5",
+   "construct": "SS",
+   "reverse": false,
+   "text": "이 시스템 덕분에 내가 고를 수 있는 선택지를 더 잘 알게 된다"
+  },
+  {
+   "code": "ATT1",
+   "construct": "ATT",
+   "reverse": false,
+   "text": "이 문항에는 '약간 그렇다'를 선택해 주세요"
+  }
+ ],
+ "attention": {
+  "code": "ATT1",
+  "answer": 5
+ },
+ "scale": [
+  "전혀 그렇지 않다",
+  "그렇지 않다",
+  "약간 그렇지 않다",
+  "보통이다",
+  "약간 그렇다",
+  "그렇다",
+  "매우 그렇다"
+ ]
+}
